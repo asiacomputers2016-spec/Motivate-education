@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+body{
+  font-family:Arial;
+  background:#f4f6fb;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.box{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  width:300px;
+  text-align:center;
+}
+h2{color:#e60000;}
+input{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:20px;
+  border:1px solid #ccc;
+}
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#e60000;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Admin Login</h2>
+<input type="text" id="user" placeholder="Username">
+<input type="password" id="pass" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<script>
+function login(){
+  var u=document.getElementById("user").value;
+  var p=document.getElementById("pass").value;
+  if(u=="admin" && p=="1234"){
+    window.location="index.html";
+  }else{
+    alert("Wrong Username or Password");
+  }
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Coaching Center</title>
+<style>
+body{margin:0;font-family:Arial;background:#f4f6fb;}
+nav{background:#e60000;padding:12px;text-align:center;}
+nav a{color:white;margin:15px;text-decoration:none;font-size:18px;font-weight:bold;}
+.hero{text-align:center;padding:40px;}
+.card{
+  background:white;
+  width:80%;
+  margin:auto;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+h1{color:#e60000;}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="students.html">Students</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="hero">
+<div class="card">
+<h1>Welcome to My Coaching Center</h1>
+<p>All student information in one place.</p>
+</div>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Students Slider</title>
+<style>
+body{font-family:Arial;background:#f4f6fb;margin:0;padding:0;}
+nav{background:#e60000;padding:10px;text-align:center;}
+nav a{color:white;margin:10px;text-decoration:none;font-size:18px;}
+.container{
+  width:90%;
+  max-width:500px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  text-align:center;
+}
+img{width:150px;height:150px;border-radius:50%;object-fit:cover;}
+button{
+  padding:10px 20px;
+  margin:5px;
+  border:none;
+  border-radius:10px;
+  background:#e60000;
+  color:white;
+  cursor:pointer;
+}
+input{
+  padding:8px;
+  width:80%;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid gray;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="students.html">Students</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+<h2>Student Slider</h2>
+<input type="text" id="search" onkeyup="searchStudent()" placeholder="Search by name">
+
+<div id="slider">
+<img id="sphoto" src="student1.jpg">
+<h3 id="sname">Rahim</h3>
+<p id="sclass">Class: 10</p>
+<p id="sroll">Roll: 1</p>
+<p id="sphone">Phone: 017xxxxxxx</p>
+</div>
+
+<button onclick="prev()">Previous</button>
+<button onclick="next()">Next</button>
+</div>
+
+<script>
+let students = [
+  {photo:"student1.jpg", name:"Rahim", cls:"10", roll:"1", phone:"017xxxxxxx"},
+  {photo:"student2.jpg", name:"Karim", cls:"9", roll:"2", phone:"018xxxxxxx"},
+  {photo:"student3.jpg", name:"Jihad", cls:"10", roll:"3", phone:"019xxxxxxx"}
+];
+
+let current = 0;
+
+function showStudent(index){
+  let s = students[index];
+  document.getElementById("sphoto").src = s.photo;
+  document.getElementById("sname").innerText = s.name;
+  document.getElementById("sclass").innerText = "Class: "+s.cls;
+  document.getElementById("sroll").innerText = "Roll: "+s.roll;
+  document.getElementById("sphone").innerText = "Phone: "+s.phone;
+}
+
+function next(){
+  current = (current + 1) % students.length;
+  showStudent(current);
+}
+
+function prev(){
+  current = (current - 1 + students.length) % students.length;
+  showStudent(current);
+}
+
+// search function
+function searchStudent(){
+  let input = document.getElementById("search").value.toUpperCase();
+  let index = students.findIndex(s => s.name.toUpperCase().includes(input));
+  if(index != -1){
+    current = index;
+    showStudent(current);
+  }
+}
+
+// initial show
+showStudent(current);
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact</title>
+<style>
+body{font-family:Arial;background:#f4f6fb;margin:0;}
+nav{background:#e60000;padding:10px;text-align:center;}
+nav a{color:white;margin:10px;text-decoration:none;font-size:18px;}
+.box{
+  background:white;
+  width:80%;
+  margin:40px auto;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="students.html">Students</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="box">
+<h2>Contact Us</h2>
+<p>📞 Phone: 01XXXXXXXXX</p>
+<p>📧 Email: mycoaching@gmail.com</p>
+</div>
+
+</body>
+</html>
+Username: admin
+Password: 1234
